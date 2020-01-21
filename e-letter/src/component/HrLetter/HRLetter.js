@@ -5,9 +5,7 @@ import '../CommonStyle.css'
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import TyHeader from '../Assests/TYHeader.PNG';
-import TyFooter from '../Assests/TYFooter.PNG';
-import { PDFExport } from '@progress/kendo-react-pdf';
-
+import TyFooter from '../Assests/TYFooter.PNG'
 export class HRLetter extends Component {
 
   constructor(props) {
@@ -101,11 +99,7 @@ export class HRLetter extends Component {
           <div className="main">
             <div className="card" style={{ marginTop: '100px' }} id="AFourPage">
               <div className="card-body pb-0">
-              <div className="example-config">
-                    <button className="k-button" onClick={() => { this.pdfExportComponent.save(); }}>
-                        Export PDF
-                    </button>
-                </div>
+
                 <div>
 
                   {this.state.waterMark ? <header className="headerimg" >
@@ -117,15 +111,7 @@ export class HRLetter extends Component {
 
                   </header> : null}
 
-                  <PDFExport
-                    paperSize="A4"
-                    margin="1cm"
-                    fileName= 'report.pdf'
-                    scale={0.6}
-                    ref={(component) => this.pdfExportComponent = component}
-                 
 
-                >
                   
                   <p style={{ float: 'right' }}></p>
                   <p style={{ textAlign: 'justify' }}>&nbsp;</p>
@@ -154,7 +140,7 @@ export class HRLetter extends Component {
                   <br />
                   <br />
                   <p style={{ textAlign: 'justify', paddingLeft: 20, margin: 0 }}><strong>Authorized Signatory</strong></p>
-                  </PDFExport>
+                  
                  
                 </div>
 
