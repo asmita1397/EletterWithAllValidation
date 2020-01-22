@@ -13,13 +13,14 @@ export class InputDesignationLetter extends Component {
             employeeId:'',
             newDesignation: '',
             date: '',
+            effdate:'',
             withWaterMark:false,
             withHeader:false,
             // validation variable
             showEmployeeName: '',
             showEmployeeId:'',
             showNewDesignation: '',
-
+            showEffdate:''
 
 
         }
@@ -67,7 +68,11 @@ export class InputDesignationLetter extends Component {
 
 
      }
-
+     hideEffdate = () => {
+        this.setState({
+            showEffdate: false
+        })
+    }
 
 
     hideEmployeeName = () => {
@@ -95,7 +100,8 @@ export class InputDesignationLetter extends Component {
                 this.setState({
                     employeeName: this.props.empData.employeeName,
                     employeeId:this.props.empData.employeeId,
-                    newDesignation: this.props.empData.newDesignation
+                    newDesignation: this.props.empData.newDesignation,
+                    effdate:this.props.empData.effdate
             })
            
         }
@@ -127,7 +133,12 @@ export class InputDesignationLetter extends Component {
                 let employeeName = (document.getElementById("employeeName").value).trim();
                 let employeeId = (document.getElementById("employeeId").value).trim();
                 let newDesignation = (document.getElementById("newDesignation").value).trim();
-               
+                let effdate=(document.getElementById("effDate").value)
+
+                if(effdate === ""){
+                    that.setState({ showEffdate: true })
+                }
+
                 if (newDesignation === "") {
                     that.setState({ showNewDesignation: true })
                 }
@@ -138,8 +149,7 @@ export class InputDesignationLetter extends Component {
                     that.setState({ showEmployeeName: true })
                 }
 
-                if (newDesignation != "" && employeeId != "" && employeeName != "") {
-            
+                if (newDesignation != "" && employeeId != "" && employeeName != "" && effdate != "") {
                     return true;
 
                 }
@@ -154,7 +164,6 @@ export class InputDesignationLetter extends Component {
     }
     pass = (event) => {
         event.preventDefault();
-      
          this.props.clicked(this.state)
         this.props.history.push('/DesignationLetter')
 
@@ -207,7 +216,7 @@ export class InputDesignationLetter extends Component {
                                           
 
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                 <MDBInput autocomplete="off" value={this.state.newDesignation} onKeyPress={this.hideNewDesignation}   label="New Designation" type="text" name="newDesignation" id="newDesignation" title="New Designation" onChange={(event) => {
                                                         this.setState({
                                                             newDesignation: event.target.value
@@ -215,8 +224,29 @@ export class InputDesignationLetter extends Component {
                                                     }} />
 
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <MDBInput autocomplete="off" value={this.state.effdate} onKeyPress={this.hideEffdate} onClick={this.hideEffdate} type="date" label="Effect Date" title="Effect Date" name="effDate" id="effDate" onChange={(event) => {
+                                                        this.setState({
+                                                            effdate: event.target.value
+                                                        }); this.hideEffdate();
+                                                    }} />
                                             </div>
-                                            {this.state.showNewDesignation ? <div id="errordiv" className="container-fluid p-0">Please fill out Designation field * </div> : null}
+
+                                            </div>
+
+                                            <div className="row" style={{padding:0}}>
+                                               <div className="col-6">
+                                               {this.state.showNewDesignation ? <div id="errordiv" className="container-fluid p-0">Please fill out Designation field * </div> : null}
+                                           
+                                           
+                                               </div>
+                                               <div className="col-6 p-0" style={{width:0}}>
+                                               {this.state.showEffdate ? <div id="errordiv" className="container-fluid">Please set Effect Date* </div> : null}
+                                               </div>
+                                           </div>
+
+
+                                           
 
                                           
                                            
