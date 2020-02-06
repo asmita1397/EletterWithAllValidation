@@ -87,8 +87,8 @@ export class BDPolicy extends Component {
   }
 
   render() {
-
-
+let toLowerCaseGender=this.props.empData.gender.gender1.toLowerCase()
+console.log(toLowerCaseGender)
     let joiningDate = new Date(this.state.employee.joiningDate);
 
     console.log("joining DAte render", joiningDate)
@@ -139,7 +139,7 @@ export class BDPolicy extends Component {
                     </ol>
                    
                     <ol style={{ listStyleType: 'upper-alpha' }} start={2}>
-                      <li style={{ textAlign: 'justify' }}>The Employee has been employed by the Company vide Employment Agreement dated <span ><strong>{joiningDate.getDate()}<sup>{this.nth(joiningDate.getDate())}</sup>&nbsp;{moment(this.state.employee.joiningDate).format('MMMM YYYY')}</strong></span> and is employed in the position of ‘Business Development’. In the role as BD, he / she is responsible for BD related matters including but not limited to enrolling the Candidates &amp; Employees for interviews with the Customers etc. In this role, he / she shall have access to Candidate database, employee details, Customer Database, salary details etc. Since the Employee has access to confidential information, the Company has to protect its confidential information.</li>
+                      <li style={{ textAlign: 'justify' }}>The Employee has been employed by the Company vide Employment Agreement dated <span ><strong>{joiningDate.getDate()}<sup>{this.nth(joiningDate.getDate())}</sup>&nbsp;{moment(this.state.employee.joiningDate).format('MMMM YYYY')}</strong></span> and is employed in the position of ‘Business Development’. In the role as BD, {toLowerCaseGender} is responsible for BD related matters including but not limited to enrolling the Candidates &amp; Employees for interviews with the Customers etc. In this role, {toLowerCaseGender} shall have access to Candidate database, employee details, Customer Database, salary details etc. Since the Employee has access to confidential information, the Company has to protect its confidential information.</li>
                     </ol>
                     <ol style={{ listStyleType: 'upper-alpha', textAlign: 'justify' }} start={3}>
                       <li style={{ textAlign: 'justify' }}>To achieve the aforesaid objective and also to ensure confidentiality, restricted use and non-disclosure of confidential information disclosed to or known by the Employee as a consequence of or through {this.props.empData.gender.gender2} association with the Company, the Employee is executing this Agreement.</li>
@@ -400,7 +400,7 @@ export class BDPolicy extends Component {
                     </ol>
 
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={12}>
-                      <li>Employee will have contacts with placement officers at various Colleges. Employee must not carry the Colleges of our Company to {this.props.empData.gender.gender2}  new Company or wherever he joins. {this.props.empData.gender.gender1} must not establish contacts with old or existing customers of our Company</li>
+                      <li>Employee will have contacts with placement officers at various Colleges. Employee must not carry the Colleges of our Company to {this.props.empData.gender.gender2}  new Company or wherever {toLowerCaseGender} joins. {this.props.empData.gender.gender1} must not establish contacts with old or existing customers of our Company</li>
                     </ol>
                   
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={13}>
@@ -419,7 +419,7 @@ export class BDPolicy extends Component {
                     </ol>
                    
                     <ol style={{ listStyleType: 'lower-alpha' }} start={17}>
-                      <li style={{ textAlign: 'justify' }}>Employee shall ensure he will not commit Dual Employment, which means that he cannot work for Commercial Benefit during Employment with any third party as Consultant, be it a Company / firm/ Proprietorship / Partner/ Person / Customer or any other Organization.</li>
+                      <li style={{ textAlign: 'justify' }}>Employee shall ensure {toLowerCaseGender} will not commit Dual Employment, which means that {toLowerCaseGender} cannot work for Commercial Benefit during Employment with any third party as Consultant, be it a Company / firm/ Proprietorship / Partner/ Person / Customer or any other Organization.</li>
                     </ol>
                     <ol style={{ listStyleType: 'lower-alpha' }} start={18}>
                       <li style={{ textAlign: 'justify' }}>Employee must not Discuss about {this.props.empData.gender.gender2}  Individual Salaries, Compensation Benefits and personal Information with subordinates within the Work premises, as well as in Public Forum.</li>
@@ -493,7 +493,7 @@ export class BDPolicy extends Component {
                     </ol>
                   
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={20}>
-                      <li>During Employment or upon Exit from Company, Employee shall ensure that he shall not make False branding about the Company.</li>
+                      <li>During Employment or upon Exit from Company, Employee shall ensure that {toLowerCaseGender} shall not make False branding about the Company.</li>
                     </ol>
                     
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={21}>
@@ -576,23 +576,23 @@ export class BDPolicy extends Component {
                   <div>
                     
                    <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={1}>
-                      <li>During Employment and upon exit, Employee should not replicate Business Strategies and process work flow in any other Company, be it {this.props.empData.gender.gender2} own firm or in any company he joins.</li>
+                      <li>During Employment and upon exit, Employee should not replicate Business Strategies and process work flow in any other Company, be it {this.props.empData.gender.gender2} own firm or in any company {toLowerCaseGender} joins.</li>
                     </ol>
                     <ol style={{ listStyleType: 'lower-alpha' }} start={2}>
-                      <li style={{ textAlign: 'justify' }}>At any given point of time Employee quits the Organization he / she cannot establish contacts with Employees &amp; Customers of Company for benefit of {this.props.empData.gender.gender2} own, be it he joins a new company or to {this.props.empData.gender.gender2} own firm.</li>
+                      <li style={{ textAlign: 'justify' }}>At any given point of time Employee quits the Organization {toLowerCaseGender}  cannot establish contacts with Employees &amp; Customers of Company for benefit of {this.props.empData.gender.gender2} own, be it {toLowerCaseGender} joins a new company or to {this.props.empData.gender.gender2} own firm.</li>
                     </ol>
                     <ol style={{ listStyleType: 'lower-alpha' }} start={3}>
-                      <li style={{ textAlign: 'justify' }}>As per Exit Policy of the Company, while Employee decides to Exit from the Company he has to hand over the complete information & database maintained by {this.props.empData.gender.gender3} throughout the tenure of {this.props.empData.gender.gender2} employment. {this.props.empData.gender.gender1} should not carry any data to {this.props.empData.gender.gender2} personal account, as well ensure he shall not erase or wipe out any official data. Any at given point of time if he exhibits unprofessionalism the Company shall take strict action against the Employee and shall file legal action against Employee.</li>
+                      <li style={{ textAlign: 'justify' }}>As per Exit Policy of the Company, while Employee decides to Exit from the Company {toLowerCaseGender} has to hand over the complete information & database maintained by {this.props.empData.gender.gender3} throughout the tenure of {this.props.empData.gender.gender2} employment. {this.props.empData.gender.gender1} should not carry any data to {this.props.empData.gender.gender2} personal account, as well ensure {toLowerCaseGender} shall not erase or wipe out any official data. Any at given point of time if {toLowerCaseGender} exhibits unprofessionalism the Company shall take strict action against the Employee and shall file legal action against Employee.</li>
                     </ol>
 
                     <ol style={{ listStyleType: 'lower-alpha' }} start={4}>
-                      <li style={{ textAlign: 'justify' }}>Upon Exit from the Company, Employee must not demotivate or utilize Company resources (Material / Employee / Customer/ Database) for {this.props.empData.gender.gender2} Commercial benefit. {this.props.empData.gender.gender1} must not form a new Company by pulling the&nbsp;“Company “resources. {this.props.empData.gender.gender1} cannot hire the Employees to {this.props.empData.gender.gender2} new Company / firm he joins.&nbsp;</li>
+                      <li style={{ textAlign: 'justify' }}>Upon Exit from the Company, Employee must not demotivate or utilize Company resources (Material / Employee / Customer/ Database) for {this.props.empData.gender.gender2} Commercial benefit. {this.props.empData.gender.gender1} must not form a new Company by pulling the&nbsp;“Company “resources. {this.props.empData.gender.gender1} cannot hire the Employees to {this.props.empData.gender.gender2} new Company / firm {toLowerCaseGender} joins.&nbsp;</li>
                     </ol>
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={5}>
                       <li>During Employment and upon Exit, Employee must not share Database and Company Confidential Information such as Business Process, Trade Secrets, Financial Information to our Competitors or Ex-Employees, or any other Company. Database should not be sold to any Marketing agencies or Competitors for commercial benefit.</li>
                     </ol>
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={6}>
-                      <li>Upon Exit from the Company, Employee must not carry the Customers of our Company to {this.props.empData.gender.gender2} new Company or wherever he joins. {this.props.empData.gender.gender1} must not establish contacts with old or existing customers of our Company</li>
+                      <li>Upon Exit from the Company, Employee must not carry the Customers of our Company to {this.props.empData.gender.gender2} new Company or wherever {toLowerCaseGender} joins. {this.props.empData.gender.gender1} must not establish contacts with old or existing customers of our Company</li>
                     </ol>
                     <ol style={{ listStyleType: 'lower-alpha', textAlign: 'justify' }} start={7}>
                       <li>After Separation from the Company, you cannot join our Competitors at least for a minimum period of 2 years from the date of exit of your employment.</li>
@@ -667,10 +667,10 @@ export class BDPolicy extends Component {
                   <div>
                     
                     <ol style={{ textAlign: 'justify' }} start={5}>
-                      <li>The Employee shall not be prevented to make any disclosure required by (i) order of a court of competent jurisdiction or (ii) any competent regulatory authority or agency where such disclosure is required by law, provided that where the Employee intends to make such disclosure, he shall notify the Company in writing, so that the Company may seek a protective order or other appropriate remedy and provided further that the Employee discloses no more Confidential Information than is reasonably necessary in order to respond to the required&nbsp;disclosure, takes all reasonable steps requested by the Company to protect the Confidential Information, minimize the extent of the Confidential Information disclosed and to make such disclosure in confidence.</li>
+                      <li>The Employee shall not be prevented to make any disclosure required by (i) order of a court of competent jurisdiction or (ii) any competent regulatory authority or agency where such disclosure is required by law, provided that where the Employee intends to make such disclosure, {toLowerCaseGender} shall notify the Company in writing, so that the Company may seek a protective order or other appropriate remedy and provided further that the Employee discloses no more Confidential Information than is reasonably necessary in order to respond to the required&nbsp;disclosure, takes all reasonable steps requested by the Company to protect the Confidential Information, minimize the extent of the Confidential Information disclosed and to make such disclosure in confidence.</li>
                     </ol>
                     <ol style={{ textAlign: 'justify' }} start={6}>
-                      <li>The Employee shall be responsible for any breach of any of the terms of this Agreement. The Employee understands that if he threatens to or actually commits a breach of or fails to observe any of the obligations set forth in this Agreement, the Company shall have the right to seek an injunction against such breach. Further, if a court of competent jurisdiction has made a final determination that the Employee has breached an obligation contained in this Agreement, the Employee shall indemnify the Company from and against all costs, expenses, losses or damages (including but not limited to legal expenses) which arose directly from the unauthorized disclosure or use of Confidential Information by the Employee or from any other breach of the terms of this Agreement.&nbsp;</li>
+                      <li>The Employee shall be responsible for any breach of any of the terms of this Agreement. The Employee understands that if {toLowerCaseGender} threatens to or actually commits a breach of or fails to observe any of the obligations set forth in this Agreement, the Company shall have the right to seek an injunction against such breach. Further, if a court of competent jurisdiction has made a final determination that the Employee has breached an obligation contained in this Agreement, the Employee shall indemnify the Company from and against all costs, expenses, losses or damages (including but not limited to legal expenses) which arose directly from the unauthorized disclosure or use of Confidential Information by the Employee or from any other breach of the terms of this Agreement.&nbsp;</li>
                     </ol>
                     <ol style={{ textAlign: 'justify' }} start={7}>
                       <li>Notwithstanding anything contained in sub-clause (6) above, breach by the Employee of this Agreement shall be construed as misconduct, entitling the Company to terminate or suspend the Employee or impose pay-cuts or make other appropriate deductions in the payments due from the Company to the Employee.</li>

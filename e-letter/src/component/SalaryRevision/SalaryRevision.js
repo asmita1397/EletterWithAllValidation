@@ -119,15 +119,17 @@ export class SalaryRevision extends Component {
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>To<br /> <br /> <strong>{this.state.employee.employeeName}</strong><strong>,</strong></p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}><strong>Employee ID: {this.state.employee.employeeId}</strong></p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
-                    <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
+                   
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>Subject: Change in Annual Salary Compensation</p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
-                    <p style={{ paddingLeft: 30, textAlign: 'justify' }}><br /> Dear <strong>{this.state.employee.employeeName},</strong><strong><br /> <br /> </strong></p>
+                    <p style={{ paddingLeft: 30, textAlign: 'justify' }}> Dear <strong>{this.state.employee.employeeName},</strong><strong><br /> <br /> </strong></p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>This is with reference to your Offer letter dated ( DOJ ). As per the Salary clause mentioned in your Offer, we confirm to revise your Annual CTC from INR <strong>{this.state.employee.salaryIncrementedFrom}</strong> to INR <strong>{this.state.employee.salaryIncrementedTo}</strong>. This revision is effective <span ><strong>{incrementInEffectDate.getDate()}<sup>{this.nth(incrementInEffectDate.getDate())}</sup>&nbsp;{moment(this.state.employee.incrementInEffectDate).format('MMMM YYYY')}</strong></span></p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>Further, your Salary revision shall be revised Annually, based on your performance and will be aligned to Performance appraisal policy adopted by the Company. &nbsp;</p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>The Salary Annexure is attached along with this letter. All other terms and conditions remains the same as per your Employment Offer.</p>
+                    <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
+                    <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>Wish you all the best.<br /> </p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}>&nbsp;</p>
                     <p style={{ paddingLeft: 30, textAlign: 'justify' }}><strong>&nbsp;</strong></p>

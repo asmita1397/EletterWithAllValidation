@@ -17,8 +17,7 @@ export class InputSalaryRevision extends Component {
             incrementInEffectDate: '',
             SalaryIncrementedFrom:'',
             SalaryIncrementedTo:'',
-            companyLocation: '',
-            designation: '',
+           
             date: '',
             CIN: '',
             
@@ -59,10 +58,9 @@ export class InputSalaryRevision extends Component {
                 employeeName: this.props.empData.employeeName,
                 employeeId: this.props.empData.employeeId,
                 incrementInEffectDate: this.props.empData.incrementInEffectDate,
-                designation: this.props.empData.designation,
                 salaryIncrementedFrom: this.props.empData.salaryIncrementedFrom,
                 salaryIncrementedTo: this.props.empData.salaryIncrementedTo,
-                companyLocation: this.props.empData.companyLocation,
+               
                 
             })
         }
@@ -111,11 +109,11 @@ export class InputSalaryRevision extends Component {
 
 
                
-                let designation = (document.getElementById("designation").value).trim();
+              
                 let employeeId = (document.getElementById("employeeId").value).trim();
                 let incrementInEffectDate = (document.getElementById("incrementInEffectDate").value).trim();
                 let employeeName = (document.getElementById("employeeName").value).trim();
-                let companyLocation = (document.getElementById("companyLocation").value).trim();
+               
                 let salaryIncrementedFrom = (document.getElementById("salaryIncrementFrom").value).trim();
                 let salaryIncrementedTo = (document.getElementById("salaryIncrementTo").value).trim();
                let selectedDate = new Date(incrementInEffectDate)
@@ -125,12 +123,8 @@ export class InputSalaryRevision extends Component {
 
 
                
-                if (companyLocation === "") {
-                    that.setState({ showCompanyLocation: true })
-                }
-                if (designation === "") {
-                    that.setState({ showDesignation: true })
-                }
+                
+                
                 if (employeeId === "") {
                     this.setState({ showEmployeeId: true })
                 }
@@ -200,16 +194,7 @@ export class InputSalaryRevision extends Component {
         })
 
     }
-    hideCompanyLocation = () => {
-        this.setState({
-            showCompanyLocation: false
-        })
-    }
-    hideDesignation = () => {
-        this.setState({
-            showDesignation: false
-        })
-    }
+   
 
     onCheckHandler = (event) => {
         debugger;
@@ -284,18 +269,7 @@ export class InputSalaryRevision extends Component {
 
                                             <div className="row">
 
-                                                <div className="col-md-3" style={{ paddingTop: '25px' }}>
-                                                    <select class="browser-default custom-select" autocomplete="off" value={this.state.salute} name="salutation" title="salutation" id="salutation" onChange={(event) => {
-                                                        this.setState({
-                                                            salute: event.target.value
-                                                        })
-                                                    }}>
-                                                        <option selected value="Mr.">Mr.</option>
-                                                        <option value="Ms.">Ms.</option>
-                                                        <option value="Mrs.">Mrs.</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col-9">
+                                                <div className="col-6">
                                                     <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeName}
                                                         value={this.state.employeeName} label="Employee Name" className="w-100" name="employeeName" title="Employee Name" id="employeeName" onChange={(event) => {
                                                             this.setState({
@@ -303,20 +277,6 @@ export class InputSalaryRevision extends Component {
                                                             })
                                                         }} />
                                                 </div>
-                                            </div>
-                                            <div className="row" style={{ padding: 0 }}>
-                                                <div className="col-3 p-0" >
-
-                                                </div>
-                                                <div className="col-9 p-0" style={{ width: 0 }}>
-                                                    {this.state.showEmployeeName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
-                                                </div>
-                                            </div>
-
-
-
-
-                                            <div className="row">
                                                 <div className="col-6">
                                                     <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeId} value={this.state.employeeId} label="Employee Id" name="employeeId" id="employeeId" title="Employee Id" onChange={(event) => {
                                                         this.setState({
@@ -324,43 +284,27 @@ export class InputSalaryRevision extends Component {
                                                         })
                                                     }} />
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.designation} onKeyPress={this.hideDesignation} label="Designation" type="text" name="designation" id="designation" title="Designation" onChange={(event) => {
-                                                        this.setState({
-                                                            designation: event.target.value
-                                                        })
-                                                    }} />
-
-                                                </div>
-                                               
-                                                
-
                                             </div>
                                             <div className="row" style={{ padding: 0 }}>
+                                                
+                                                <div className="col-6 p-0" style={{ width: 0 }}>
+                                                    {this.state.showEmployeeName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
+                                                </div>
                                                 <div className="col-6 p-0" >
                                                     {this.state.showEmployeeId ? <div id="errordiv" className="container-fluid">Please fill out ID field * </div> : null}
 
                                                 </div>
-                                                <div className="col-6 p-0" >
-                                                    {this.state.showDesignation ? <div id="errordiv" className="container-fluid">Please fill out Designation field * </div> : null}
-
-
-                                                </div>
-                                                
-
                                             </div>
+
+
+
+
+                                         
 
                                             
                                             <div class="row">
-                                            <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.companyLocation} onKeyPress={this.hideCompanyLocation} label="Company Location" type="text" name="companyLocation" id="companyLocation" title="Company Location" onChange={(event) => {
-                                                        this.setState({
-                                                            companyLocation: event.target.value
-                                                        })
-                                                    }} />
-
-                                                </div>
-                                            <div class="col-6">
+                                           
+                                            <div class="col-12">
                                                     <MDBInput autocomplete="off" value={this.state.incrementInEffectDate} onClick={this.hideIncrementInEffectDate} onKeyPress={this.hideIncrementInEffectDate} type="date" label="Increment In Effect Date" title="Increment In Effect Date" name="incrementInEffectDate" id="incrementInEffectDate" onChange={(event) => {
                                                         this.setState({
                                                             incrementInEffectDate: event.target.value
@@ -371,10 +315,8 @@ export class InputSalaryRevision extends Component {
                                             </div>
                                             <div className="row" style={{ padding: 0 }}>
                                              
-                                                <div className="col-6 p-0" style={{ width: 0 }}>
-                                                    {this.state.showCompanyLocation ? <div id="errordiv" className="container-fluid">Please fill out Company Location field * </div> : null}
-                                                </div>
-                                                <div className="col-6 p-0" style={{ width: 0 }}>
+                                                
+                                                <div className="col-12 p-0" style={{ width: 0 }}>
                                                     {this.state.showIncrementInEffectDate ? <div id="errordiv" className="container-fluid">Please fill out Increment Effect Date field * </div> : null}
                                                 </div>
                                             </div>

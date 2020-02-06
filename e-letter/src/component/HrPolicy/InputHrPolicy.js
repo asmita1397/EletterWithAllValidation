@@ -213,7 +213,7 @@ export class InputHrPolicy extends Component {
         debugger;
 
         console.log("Checkbox value ==", event.target.value)
-        if (event.target.value === 'false') {
+        if (event.target.value == 'false') {
             this.setState({
                 withHeader: true
             })
@@ -259,9 +259,11 @@ export class InputHrPolicy extends Component {
                                     </div>
                                     <div className="card-body ">
                                         <form onSubmit={this.pass}>
-                                        <div class="row">
-                                                <div className="col-3" style={{ paddingTop: '25px' }}>
-                                                    <select class="browser-default custom-select" value={this.state.salute} style={{ width: '62px' }} autocomplete="off" name="salutation" title="salutation" id="salutation" onChange={(event) => {
+
+                                            <div className="row">
+
+                                                <div className="col-md-3" style={{ paddingTop: '25px' }}>
+                                                    <select class="browser-default custom-select" autocomplete="off" value={this.state.salute} name="salutation" title="salutation" id="salutation" onChange={(event) => {
                                                         this.setState({
                                                             salute: event.target.value
                                                         })
@@ -271,34 +273,29 @@ export class InputHrPolicy extends Component {
                                                         <option value="Mrs.">Mrs.</option>
                                                     </select>
                                                 </div>
-
-                                                <div class="col-md-9">
-                                                    <MDBInput autocomplete="off" value={this.state.employeeName} onKeyPress={this.hideEmployeeName} label="Employee Name" className="w-100" name="employeeName" title="Employee Name" id="employeeName" onChange={(event) => {
-                                                        this.setState({
-                                                            employeeName: event.target.value
-                                                        })
-                                                    }} />
+                                                <div className="col-9">
+                                                    <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeName}
+                                                        value={this.state.employeeName} label="Employee Name" className="w-100" name="employeeName" title="Employee Name" id="employeeName" onChange={(event) => {
+                                                            this.setState({
+                                                                employeeName: event.target.value
+                                                            })
+                                                        }} />
                                                 </div>
-                                               
-
                                             </div>
+                                            <div className="row" style={{ padding: 0 }}>
+                                                <div className="col-3 p-0" >
 
-                                            <div className="row" >
-                                                <div className="col-3"></div>
-                                                <div className="col-9 p-0" >
+                                                </div>
+                                                <div className="col-9 p-0" style={{ width: 0 }}>
                                                     {this.state.showEmployeeName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
-
-
                                                 </div>
-                                              
                                             </div>
-                                            
 
 
 
                                             <div className="row">
-                                            <div class="col-6">
-                                                <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeId} value={this.state.employeeId} label="Employee Id" name="employeeId" id="employeeId" title="Employee Id" onChange={(event) => {
+                                                <div className="col-6">
+                                                    <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeId} value={this.state.employeeId} label="Employee Id" name="employeeId" id="employeeId" title="Employee Id" onChange={(event) => {
                                                         this.setState({
                                                             employeeId: event.target.value
                                                         })
@@ -314,10 +311,10 @@ export class InputHrPolicy extends Component {
                                                 </div>
                                             </div>
                                             <div className="row" style={{ padding: 0 }}>
-                                            <div className="col-6 p-0" >
-                                                {this.state.showEmployeeId ? <div id="errordiv" className="container-fluid">Please fill out ID field * </div> : null}
-                                                </div>
+                                                <div className="col-6 p-0" >
+                                                    {this.state.showEmployeeId ? <div id="errordiv" className="container-fluid">Please fill out ID field * </div> : null}
 
+                                                </div>
                                                 <div className="col-6 p-0" style={{ width: 0 }}>
                                                     {this.state.showDesignation ? <div id="errordiv" className="container-fluid">Please fill Designation field * </div> : null}
                                                 </div>
@@ -343,19 +340,17 @@ export class InputHrPolicy extends Component {
 
                                             {/* address */}
                                             <div class="row">
-                                            
                                                 <div class="col-12">
-                                                    <MDBInput autocomplete="off" value={this.state.address}  onKeyPress= { this.hideAddress} label="Address" type="textarea" name="address" id="address" title="address" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.address} label="Address" type="textarea" name="address" id="address" title="address" onChange={(event) => {
                                                         this.setState({
                                                             address: event.target.value
-                                                        }); 
+                                                        }); this.hideAddress()
                                                     }} />
                                                 </div>
 
                                             </div>
 
                                             <div className="row" style={{ padding: 0 }}>
-                                            
                                                 <div className="col-6 p-0" >
                                                     {this.state.showAddress ? <div id="errordiv" className="container-fluid">Please fill out Address field * </div> : null}
 
@@ -363,7 +358,8 @@ export class InputHrPolicy extends Component {
 
                                             </div>
 
-                                         
+                                           
+
                                             <div className=" input-group w-50 container-fluid">
                                                 <MDBBtn outline type="submit" id="generate" outline className=" form-control-plaintext  justify-content-center text-center" color="primary">Generate</MDBBtn>
 
