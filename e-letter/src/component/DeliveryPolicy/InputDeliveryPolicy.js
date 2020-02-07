@@ -292,7 +292,7 @@ export class InputDeliveryPolicy extends Component {
                                                     }}>
                                                         <option selected value="S/o">Mr.</option>
                                                         <option value="D/o">Ms.</option>
-                                                        <option value="D/o ">Mrs.</option>
+                                                        <option value="D/o">Mrs.</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-5">
