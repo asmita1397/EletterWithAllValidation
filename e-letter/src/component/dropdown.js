@@ -41,7 +41,7 @@ export default class Dropdown extends Component {
                                     <a className="dropdown-item" tabIndex={-1} to="#">Relieve</a>
                                     <ul className="dropdown-menu">
                                         <li className="dropdown-item"><Link tabIndex={-1} to="/InputRelivingLetter">Relieving Letter</Link></li>
-                                        <li className="dropdown-item"><Link to="/InputExitLetter">Exit</Link></li>
+                                        <li className="dropdown-item"><Link to="/InputExitLetter">Exit Letter</Link></li>
                                     </ul>
                                 </li>
                             </ul>

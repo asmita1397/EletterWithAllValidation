@@ -370,18 +370,19 @@ export class MailComponent extends Component {
         // console.log(this.state.items2);
 
 
-        if (!this.state.items2.includes(localStorage.getItem('email'))) {
+       
+           
+        //console.log()
+        // console.log(this.state.items2)
+        if (this.validate() == true) {
+            debugger;
+            if (!this.state.items2.includes(localStorage.getItem('email'))) {
            
                 this.state.items2.push(localStorage.getItem('email'))
                 if (this.state.from === "hr@testyantra.com" && !this.state.items2.includes("hr@testyantra.com")) {
                     this.state.items2.push("hr@testyantra.com")
                 }
             }
-           
-        //console.log()
-        // console.log(this.state.items2)
-        if (this.validate() == true) {
-            debugger;
             const data = new FormData()
             // data.append('file', this.state.attachment)
 
@@ -403,7 +404,7 @@ export class MailComponent extends Component {
 
             console.log("header info --", headers)
             Axios.post(
-                'http://localhost:8081/send-email2', data,
+                'http://10.10.12.185:8081/send-email2', data,
 
                 { headers: headers }
             )
@@ -462,24 +463,10 @@ export class MailComponent extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     render() {
         return (
             <div >
-                <ToastContainer autoClose={4000} pauseOnHover={false} pauseOnFocusLoss={false} />
+                <ToastContainer autoClose={8000} pauseOnHover={true} pauseOnFocusLoss={false} />
                 <MDBContainer>
                     <MDBBtn onClick={this.toggle}>Send Mail</MDBBtn>
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
@@ -600,17 +587,17 @@ export class MailComponent extends Component {
                                                 class="input" style={{ height: 100 }}
                                                 value={this.state.content}
                                                 rows="5" onChange={(event) => {
-                                                    if (this.state.checkMail) {
+                                                   /*  if (this.state.checkMail) {
                                                         this.setState({
                                                             content: "HR Default content"
                                                         });
-                                                    } else {
+                                                    } else { */
                                                         this.setState({
                                                             content: event.target.value
                                                         });
                                                     } /* this.hideContent() */
                                                 }
-                                                }
+                                               // }
 
                                             />
                                             {this.state.showContent ? <div id="errordiv" style={{ marginTop: '-5px', paddingLeft: '0px' }} className="container-fluid">Please fill out Content field * </div> : null}

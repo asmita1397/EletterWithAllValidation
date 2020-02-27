@@ -113,35 +113,30 @@ export class InputExitLetter extends Component {
                 let companyLocation = (document.getElementById("companyLocation").value).trim();
                 let ExitDate = (document.getElementById("exitDate").value).trim();
                 let JoiningDate = (document.getElementById("joiningDate").value).trim();
-                /* let salaryDeduction = (document.getElementById("salaryDeduction").value).trim();
-                let deductionTDS = (document.getElementById("deductionTDS").value).trim();
-                let salary = (document.getElementById("salary").value).trim();
-                let gratuity = (document.getElementById("gratuity").value).trim();
-                let fundDue = (document.getElementById("fundDue").value).trim(); */
+              
                 
                 
                 let selectedJoiningDate = new Date(JoiningDate);
                 let selectedExitDate = new Date(ExitDate)
                 let now = new Date();
 
-                
+                if (employeeName === "") {
+                    this.setState({ showEmployeeName: true })
+                }
                 if (designation === "") {
                     this.setState({ showDesignation: true })
                 }
                 if (companyLocation === "") {
                     this.setState({ showCompanyLocation: true })
                 }
-                if (employeeName === "") {
-                    this.setState({ showEmployeeName: true })
-                }
-
-                if (ExitDate === "") {
-                    this.setState({ showExitDate: true })
-                }
                 if (JoiningDate === "") {
                     this.setState({ showJoiningDate: true })
                 }
-
+                if (ExitDate === "") {
+                    this.setState({ showExitDate: true })
+                }
+               
+                
                /*  if (salaryDeduction === "") {
                     this.setState({ showSalaryDeduction: true })
                 }
@@ -163,14 +158,14 @@ export class InputExitLetter extends Component {
                     return false;
                 }
 
-                if (selectedExitDate < selectedJoiningDate) {
+                if (selectedExitDate <= selectedJoiningDate) {
                     that.setState({
                         showinvalidDate: true
                     })
                     return false;
                     
                 }
-                if (/* salaryDeduction!== "" &&  deductionTDS!== "" &&  gratuity!== "" &&  fundDue!== "" &&  salary!== "" && */  designation  !== "" && companyLocation !== "" && employeeName !== "" && ExitDate !== "" && JoiningDate !== '') {
+                if ( designation  !== "" && companyLocation !== "" && employeeName !== "" && ExitDate !== "" && JoiningDate !== "") {
                  
                     return true;
                 }
@@ -379,14 +374,14 @@ export class InputExitLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} type="date" onClick={() => { this.hideshowJoiningDate(); this.hideInvalidJoin() }} onKeyPress={() => { this.hideshowJoiningDate(); this.hideInvalidJoin() }} label="Joined Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} type="date" max="2050-12-31" onClick={() => { this.hideshowJoiningDate(); this.hideInvalidJoin() }} onKeyPress={() => { this.hideshowJoiningDate(); this.hideInvalidJoin() }} label="Joined Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         }); this.hideshowJoiningDate(); this.hideInvalidJoin();
                                                     }} />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.exitDate} type="date" onClick={() => { this.hideExitDate(); this.hideInvalidDate() }} onKeyPress={() => { this.hideExitDate(); this.hideInvalidDate() }} label="Exit Date" title="Exit Date" name="exitDate" id="exitDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.exitDate} type="date" max="2050-12-31" onClick={() => { this.hideExitDate(); this.hideInvalidDate() }} onKeyPress={() => { this.hideExitDate(); this.hideInvalidDate() }} label="Exit Date" title="Exit Date" name="exitDate" id="exitDate" onChange={(event) => {
                                                         this.setState({
                                                             exitDate: event.target.value
                                                         }); this.hideExitDate(); this.hideInvalidDate()
@@ -401,7 +396,7 @@ export class InputExitLetter extends Component {
                                                 </div>
                                                 <div className="col-6 p-0" style={{ width: 0 }}>
                                                     {this.state.showExitDate ? <div id="errordiv" className="container-fluid">Please fill out Exit Date field * </div> : null}
-                                                    {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">Exit Date must be greater or equal to Joining Date * </div> : null}
+                                                    {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">Exit Date must be greater than Joining Date * </div> : null}
                                                 </div>
                                             </div>
 

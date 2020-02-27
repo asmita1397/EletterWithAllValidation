@@ -225,7 +225,7 @@ export class InputDesignationLetter extends Component {
 
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.effdate} onKeyPress={this.hideEffdate} onClick={this.hideEffdate} type="date" label="Effect Date" title="Effect Date" name="effDate" id="effDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.effdate} onKeyPress={this.hideEffdate} onClick={this.hideEffdate} max="2050-12-31" type="date" label="Effect Date" title="Effect Date" name="effDate" id="effDate" onChange={(event) => {
                                                         this.setState({
                                                             effdate: event.target.value
                                                         }); this.hideEffdate();

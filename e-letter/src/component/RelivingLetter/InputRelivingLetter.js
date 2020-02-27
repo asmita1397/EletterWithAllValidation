@@ -110,7 +110,7 @@ export class InputRelivingLetter extends Component {
                  }
 
 
-                 if(selectedrelievingDate<selectedJoiningDate){
+                 if(selectedrelievingDate<=selectedJoiningDate){
                     that.setState({
                        showinvalidDate:true
                     }) 
@@ -315,14 +315,14 @@ export class InputRelivingLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off"  value={this.state.joiningDate} onClick={this.hideJoiningDate} onKeyPress={this.hideJoiningDate} type="date" label="Joining Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off"  value={this.state.joiningDate} onClick={this.hideJoiningDate} onKeyPress={this.hideJoiningDate} type="date" max="2050-12-31" label="Joining Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         });this.hideJoiningDate();
                                                     }} />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off"  value={this.state.relievingDate} onClick={()=>{this.hideRelievingDate();this.hideInvalidDate()}} onKeyPress={()=>{this.hideRelievingDate();this.hideInvalidDate()}}  type="date" label="Relieving Date" title="relievingDate" name="relievingDate" id="relievingDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off"  value={this.state.relievingDate} onClick={()=>{this.hideRelievingDate();this.hideInvalidDate()}} onKeyPress={()=>{this.hideRelievingDate();this.hideInvalidDate()}}  type="date" max="2050-12-31" label="Relieving Date" title="relievingDate" name="relievingDate" id="relievingDate" onChange={(event) => {
                                                         this.setState({
                                                             relievingDate: event.target.value
                                                         });this.hideRelievingDate();this.hideInvalidDate()
@@ -337,7 +337,7 @@ export class InputRelivingLetter extends Component {
                                                </div>
                                                <div className="col-6 p-0" style={{width:0}}>
                                                {this.state.showRelievingDate ? <div id="errordiv" className="container-fluid">Please fill out Relieving Date field * </div> : null}
-                                               {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">Relieving Date greater or equal to Joining Date * </div> : null}
+                                               {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">Relieving Date greater than Joining Date * </div> : null}
                                                </div>
                                            </div>
                                             

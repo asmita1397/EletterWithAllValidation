@@ -38,6 +38,7 @@ export class InputConsultantOffer extends Component {
             reportingDate: '',
             showDesignation: '',
             showCompanyLocation: '',
+            showInvalidPeriod:'',
             validDate: ''
         }
     }
@@ -145,17 +146,23 @@ export class InputConsultantOffer extends Component {
                     this.setState({ showEmployeeName: true })
                 }
 
-                /*    if(selectedDate<now){
+                   if(selectedJoiningDate<=now){
                       that.setState({
                          validDate:"true"
                       }) 
   
                      return false;
-                }  */
+                } 
 
-                if (selectedReportingDate < selectedJoiningDate) {
+                if (selectedReportingDate <= selectedJoiningDate) {
                     that.setState({
                         showinvalidDate: true
+                    })
+                    return false;
+                }
+                if (noticePeriod <=0 && !(noticePeriod==="")) {
+                    that.setState({
+                        showInvalidPeriod: true
                     })
                     return false;
                 }
@@ -170,8 +177,12 @@ export class InputConsultantOffer extends Component {
             });
         });
     }
-
-
+    hideInvalidNoticePeriod = () => {
+        this.setState({
+            showInvalidPeriod: false
+        })
+    }
+    
     hideNoticePeriod = () => {
         this.setState({
             showNoticePeriod: false
@@ -353,11 +364,11 @@ export class InputConsultantOffer extends Component {
 
                                             <div className="row">
                                                 <div class="col-12">
-                                                    <MDBInput autocomplete="off" value={this.state.noticePeriod} onKeyPress={this.hideNoticePeriod} type="number" label="Notice Period Month" title="Notice Period" name="noticePeriod" id="noticePeriod" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" min={0} value={this.state.noticePeriod} onKeyPress={this.hideNoticePeriod} type="number" label="Notice Period Month" title="Notice Period" name="noticePeriod" id="noticePeriod" onChange={(event) => {
                                                         this.setState({
                                                             noticePeriod: event.target.value
-                                                        })
-                                                    }} />
+                                                        });this.hideInvalidNoticePeriod()
+                                                    }} required/>
 
                                                 </div>
                                               
@@ -365,20 +376,27 @@ export class InputConsultantOffer extends Component {
                                             <div className="row" style={{ padding: 0 }}>
                                                 <div className="col-12 p-0" >
                                                     {this.state.showNoticePeriod ? <div id="errordiv" className="container-fluid">Please fill out Notice Period Month field * </div> : null}
+                                                    {this.state.showInvalidPeriod ? <div id="errordiv" className="container-fluid">Notice Period should be greater than zero * </div> : null}
+
                                                 </div>
                                                
                                             </div>
 
+
+
+
+
+                                            
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} type="date" onClick={() => { this.hideJoiningDate(); this.hideInvaliddate() }} onKeyPress={() => { this.hideJoiningDate(); this.hideInvaliddate() }} label="Joined Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} type="date" max="2050-12-31" onClick={() => { this.hideJoiningDate(); this.hideInvaliddate() }} onKeyPress={() => { this.hideJoiningDate(); this.hideInvaliddate() }} label="Joined Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         }); this.hideJoiningDate(); this.hideInvaliddate();
                                                     }} />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.reportingDate} type="date" onClick={() => { this.hidereportingDate(); this.hideInvaliddate(); }} onKeyPress={() => { this.hidereportingDate(); this.hideInvaliddate() }} label="Reporting Date" title="reporting Date" name="reportingDate" id="reportingDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.reportingDate} type="date" max="2050-12-31" onClick={() => { this.hidereportingDate(); this.hideInvaliddate(); }} onKeyPress={() => { this.hidereportingDate(); this.hideInvaliddate() }} label="Reporting Date" title="reporting Date" name="reportingDate" id="reportingDate" onChange={(event) => {
                                                         this.setState({
                                                             reportingDate: event.target.value
                                                         }); this.hidereportingDate(); this.hideInvaliddate();
@@ -388,12 +406,12 @@ export class InputConsultantOffer extends Component {
                                             <div className="row" style={{ padding: 0 }}>
                                                 <div className="col-6 p-0" >
                                                     {this.state.showJoiningDate ? <div id="errordiv" className="container-fluid">Please fill out Joining date field * </div> : null}
-                                                    {this.state.showJoinInvalid ? <div id="errordiv" className="container-fluid">Joined Date must be equal or less than today's Date * </div> : null}
+                                                    {this.state.validDate ? <div id="errordiv" className="container-fluid">Joined Date must be equal or less than today's Date * </div> : null}
 
                                                 </div>
                                                 <div className="col-6 p-0" style={{ width: 0 }}>
                                                     {this.state.showreportingDate ? <div id="errordiv" className="container-fluid">Please fill out reporting Date field * </div> : null}
-                                                    {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">reporting Date must be greater or equal to Joining Date * </div> : null}
+                                                    {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">reporting Date must be greater than Joining Date * </div> : null}
                                                 </div>
                                             </div>
 

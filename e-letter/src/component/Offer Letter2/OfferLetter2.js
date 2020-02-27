@@ -5,7 +5,7 @@ import './offer.css'
 import TyHeader from '../Assests/TYHeader.PNG';
 import TyFooter from '../Assests/TYFooter.PNG';
 import Home from '../home';
-
+//this.props.empData.gender.gender1
 export class Offer2 extends Component {
 
     constructor(props) {
@@ -63,7 +63,7 @@ export class Offer2 extends Component {
 
       
         return (
-            <div id="qwerty">
+            <div className="qwerty">
                 <Home buttonShow={true} showWatermark={(data) => this.setState({ waterMark: data })} sendData={() => this.sendData()} />
                 <div className="main">
                     <div className="card" id="AFourPage" style={{ marginTop: '100px' }}>
@@ -89,23 +89,22 @@ export class Offer2 extends Component {
                             </div>
                                 : null}
                             <div>
-                                <br />
-                                <br />
+                               
                                 <br />
                                 <br />
                                 <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}>Date: {SysDate.getDate()}<sup>{this.nth(SysDate.getDate())}</sup>&nbsp;{moment(SysDate).format('MMMM YYYY')} </p>
                                 <br />
                                 <br />
                                 <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}>To,</p>
+
+                               
+                                <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}><strong>{this.state.employee.employeeName}</strong><strong>,</strong><div style={{wordBreak: 'break-word',width: '400px'}}>{this.state.employee.address}</div></p>
+                               
                                 <br />
-                                <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}><strong>{this.state.employee.name}</strong><strong>,</strong></p>
-                                <br />
-                                <p></p>
-                                <br />
-                                <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}>Dear &nbsp;<strong>&nbsp;</strong><strong>{this.state.employee.name}</strong><strong>,</strong></p>
+                                <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}>Dear &nbsp;<strong>&nbsp;</strong><strong>{this.state.employee.employeeName}</strong><strong>,</strong></p>
                                 <br />
                                 <p style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'left' }}><u>Subject: Offer of employment – <strong>‘{this.state.employee.designation}’ </strong></u></p>
-                                <br />
+                               
                                 <ol>
                                     <li style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'justify' }}>In response to your interview with us, we are pleased to offer you the position of <strong><u>‘{this.state.employee.designation}’ </u></strong>in M/s Test Yantra Software Solutions (India) Pvt. Ltd. (“Company”). This offer is subject to the satisfactory background verification check that will be completed by the Company prior to your joining date.</li>
                                     <li style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'justify' }}>Your cost to company (CTC) shall be as per the below Schedule.</li>
@@ -117,24 +116,24 @@ export class Offer2 extends Component {
                                     <li style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'justify' }}>We are confident that you will enjoy being a part of the Company as much as we shall cherish our association with you.</li>
                                     <li style={{ paddingLeft: 10, paddingRight: 10, textAlign: 'justify' }}>You are also requested to submit the following documents to us on the date of submitting the duly signed Agreement, which shall not be later than <strong>{toOfferValidity.getDate()}<sup>{this.nth(toOfferValidity.getDate())}</sup>&nbsp;{moment(toOfferValidity).format('MMMM YYYY')}</strong>.</li>
                                 </ol>
-                                <table style={{ width: 800, marginLeft: 'auto', marginRight: 'auto', heigth: 160, fontFamily: 'sans-serif' }} border="1px">
+                                <table style={{ width: 800, marginLeft: 'auto', marginRight: 'auto', heigth: 160, /* fontFamily: 'sans-serif' */ fontWeight: '400'}} border="1px">
                                     <tbody>
                                         <tr>
-                                            <td style={{ textAlign: 'left', padding: 0 }} width={302}>
+                                            <td style={{ textAlign: 'left', padding: 0,fontWeight:'400' }} width={302}>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>a)&nbsp; Photocopies of your educational qualifications</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>b)&nbsp; 2 passport size photographs of yourself</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>c)&nbsp; Offer Letter, Relieving letter from previous employer/s, if applicable</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>d)&nbsp; 3 month's Payslips of previous employer, if applicable</p>
-                                                <p style={{ margin: 0 }}>&nbsp;</p>
+                                                
                                             </td>
-                                            <td style={{ textAlign: 'left' }} width={300}>
+                                            <td style={{ textAlign: 'left',fontWeight:'400' }} width={300}>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>e) PF account details</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>f) Income Tax deduction certificate of previous employer</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>g) Pan Copy</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>h) Passport Copy</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>i) Aadhar Card Copy</p>
                                                 <p style={{ paddingLeft: 10, margin: 0 }}>j) ID Proof &amp; Address Proof</p>
-                                                <p style={{ margin: 0 }}>&nbsp;</p>
+                                               
                                             </td>
                                         </tr>
                                     </tbody>
@@ -193,7 +192,7 @@ export class Offer2 extends Component {
                                         </tr>
                                         <tr style={{}}>
                                             <td style={{ width: '300px', textAlign: 'left', fontFamily: 'sans-serif' }}>&nbsp;<strong style={{ fontSize: 'large' }}>NAME:</strong></td>
-                                            <td style={{ textAlign: 'left', width: '300px', wordBreak: 'break-all', fontFamily: 'sans-serif', fontSize: 'large' }}>&nbsp;{this.state.employee.name}</td>
+                                            <td style={{ textAlign: 'left', width: '300px', wordBreak: 'break-all', fontFamily: 'sans-serif', fontSize: 'large' }}>&nbsp;{this.state.employee.employeeName}</td>
                                         </tr>
                                         <tr style={{}}>
                                             <td style={{ width: '300px', textAlign: 'left', fontFamily: 'sans-serif' }}>&nbsp;<strong style={{ fontSize: 'large' }}>DESIGNATION:</strong></td>
@@ -406,7 +405,7 @@ export class Offer2 extends Component {
                                 <br />
                                 <p style={{ textAlign: 'justify' }}>AND:</p>
                                 <br />
-                                <p style={{ textAlign: 'justify' }}><strong>{this.state.employee.name}&nbsp; ,</strong> aged about {this.state.employee.age}&nbsp;years, {this.state.employee.salute}&nbsp;{this.state.employee.fatherName},<strong> Residing at &nbsp;{this.state.employee.address}</strong>. Here in after referred to as the “Employee” or the “Second Party”, of the OTHER PART.</p>
+                                <p style={{ textAlign: 'justify' }}><strong><span style={{textTransform:'capitalize'}}>{this.state.employee.employeeName}</span> ,</strong> aged about {this.state.employee.age}&nbsp;years, {this.state.employee.salute}&nbsp;{this.state.employee.fatherName},<strong> Residing at &nbsp;{this.state.employee.address}</strong>. Here in after referred to as the “Employee” or the “Second Party”, of the OTHER PART.</p>
                                 <br />
                                 <p style={{ textAlign: 'justify' }}>The Company and the Employee shall hereinafter, wherever the context may so require, be individually referred to as ‘Party’ or collectively as ‘Parties’, as the case may be.</p>
                                 <br />
@@ -458,11 +457,10 @@ export class Offer2 extends Component {
                                 : null}
 
                             <div>
-                                <br />
-                                <br />
+                                
                                 {/* <ol start={2} style={{ paddingLeft: 70 }}> */}
                                 <p style={{ textAlign: 'justify' }}>NOW THIS EMPLOYMENT AGREEMENT SHALL WITNESSETH AS FOLLOWS;</p>
-                                <br />
+                               
 
                                 <ol start={1}><li style={{ textAlign: 'justify' }}><u> APPOINTMENT:</u></li></ol>
                                 {/* <p style={{ textAlign: 'justify' }}><u>1. APPOINTMENT:</u></p> */}
@@ -476,7 +474,7 @@ export class Offer2 extends Component {
 
                                     <br />
 
-                                    <li style={{ textAlign: 'justify' }}>The Employee shall report to Test Yantra and/or to such other person or persons as the Company deems fit to be his/her supervisor from time to time. In addition, the Employee shall carry out such other duties and functions as may be assigned to him/her by the Company from time to time.</li>
+                                    <li style={{ textAlign: 'justify' }}>The Employee shall report to Test Yantra and/or to such other person or persons as the Company deems fit to be his/her supervisor from time to time. In addition, the Employee shall carry out such other duties and functions as may be assigned to {this.props.empData.salute==='S/o'?"him":"her"} by the Company from time to time.</li>
 
                                     <br />
 
@@ -610,7 +608,7 @@ export class Offer2 extends Component {
                                 : null}
                             <div>
                                 <br />
-                                <br />
+                                
                                 <ol className="order">
 
                                     <li style={{ textAlign: 'justify' }}><span className="orderspan">3.4</span> In the event of the Employee terminating the Agreement or otherwise leaving the services of the Company in any manner, the Company shall not be liable to pay any amounts towards bonus, increment, etc. and the Company may recover any losses the Company has suffered on account termination by the Employee except in accordance with clause 3.2 above.</li>
@@ -622,8 +620,6 @@ export class Offer2 extends Component {
                                     <br />
 
                                     <li style={{ textAlign: 'justify' }}><u>Summary</u><u> dismissal</u>:- The Company may dismiss the Employee immediately and without notice if, the employee:</li>
-
-                                    <br />
                                     <ol type={"a"} style={{ textAlign: 'justify' }}>
                                         <li style={{ textAlign: 'justify' }}>Does not perform the duties assigned to him/her under this Agreement satisfactorily;</li>
                                         <li style={{ textAlign: 'justify' }}>Is guilty of dishonesty, serious neglect or gross misconduct in the course of employment;</li>
@@ -645,7 +641,7 @@ export class Offer2 extends Component {
                                 <ol style={{ textAlign: 'justify' }} start={5}>
                                     <li><u>NON – DISCLOSURE OF CONFIDENTIAL INFORMATION &amp; NON-COMPETE:</u></li>
                                 </ol>
-                                <br />
+                               
 
                                 <ol className="order">
                                     <li style={{ textAlign: 'justify' }}><span className="orderspan">5.1</span> The Employee agrees that information concerning the working of the Company, including all the information concerning the Company’s business transactions, financial arrangements, business partners, clientele, trade secrets, marketing strategies and any other information concerning the Company which is not in the public domain constitutes ‘Confidential Information’ belonging to the Company under this Agreement and he shall not, during the continuance of this Agreement or for a period of two (2) years after the termination of this Agreement, reveal Confidential Information to any person, firm, corporation, or entity. Should the Employee reveal or threaten to reveal such Confidential Information to any person, firm, corporation, or entity contrary to the provisions of this Agreement during the subsistence of this Agreement, the Company shall be entitled to take disciplinary action against the Employee including dismissal of the Employee and the Company may file suit for damages. Should the Employee reveal or threaten to reveal such Confidential Information to any person, firm, corporation, or entity contrary to the provisions of this Agreement after termination of this Agreement but within 2 year from the date termination of this Agreement, the Company shall be entitled to claim damages from the Employee.</li>
@@ -891,7 +887,7 @@ export class Offer2 extends Component {
                                 <br />
                                 <br />
                                 <div>
-                                    <p className="western" style={{ float: 'left', width: 300, textAlign: 'left', margin: 0 }}>Authorised Signatory&nbsp;&nbsp;&nbsp;</p > <p style={{ float: 'right', width: 390 }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name: {this.state.employee.name}</p>
+                                    <p className="western" style={{ float: 'left', width: 300, textAlign: 'left', margin: 0 }}>Authorised Signatory&nbsp;&nbsp;&nbsp;</p > <p style={{ float: 'right', width: 390 }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name: {this.state.employee.employeeName}</p>
                                     <br /> <p className="western" style={{ width: 200, textAlign: 'left', margin: 0 }}>&nbsp;&nbsp;&nbsp;</p >
                                 </div>
                             </div>

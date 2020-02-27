@@ -263,7 +263,7 @@ export class InputConfirmationLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} onKeyPress={this.hideJoiningDate} onClick={this.hideJoiningDate} type="date" label="Joined Date" title="Joining Date" name="joiningDate" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} onKeyPress={this.hideJoiningDate} onClick={this.hideJoiningDate} type="date" max="2050-12-31" label="Joined Date" title="Joining Date" name="joiningDate" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         }); this.hideJoiningDate();

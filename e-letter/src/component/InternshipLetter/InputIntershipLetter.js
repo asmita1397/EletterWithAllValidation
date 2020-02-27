@@ -121,7 +121,7 @@ export class InputIntershipLetter extends Component {
                 }
 
 
-                if (selectedendDate < selectedstartDate) {
+                if (selectedendDate <= selectedstartDate) {
                     that.setState({
                         showinvalidDate: true
                     })
@@ -246,7 +246,7 @@ export class InputIntershipLetter extends Component {
                             <div className="col-auto container mt-5 pb-5">
                                 <div style={{ width: '500px' }} className="card m-auto shadow-lg mt-5">
                                     <div class="card-header" style={{ borderRadius: '0px !important', background: 'white' }} >
-                                        <h3 className="text-center black-text font-bold ">Intership Letter</h3>
+                                        <h3 className="text-center black-text font-bold ">Internship Letter</h3>
                                     </div>
                                     <div className="card-body ">
                                         <form onSubmit={this.pass}>
@@ -310,7 +310,7 @@ export class InputIntershipLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <MDBInput autocomplete="off" value={this.state.internType} onKeyPress={this.hideinternType} label="Intership Type" className="w-100" name="internType" title="Employe Type" id="internType" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.internType} onKeyPress={this.hideinternType} label="Internship Type" className="w-100" name="internType" title="Employe Type" id="internType" onChange={(event) => {
                                                         this.setState({
                                                             internType: event.target.value
                                                         })
@@ -328,14 +328,14 @@ export class InputIntershipLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.startDate} onClick={this.hidestartDate} onKeyPress={this.hidestartDate} type="date" label="Intership Start Date" title="Joining Date" name="startDate" id="startDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.startDate} onClick={this.hidestartDate} onKeyPress={this.hidestartDate} type="date" max="2050-12-31" label="Internship Start Date" title="Joining Date" name="startDate" id="startDate" onChange={(event) => {
                                                         this.setState({
                                                             startDate: event.target.value
                                                         }); this.hidestartDate();
                                                     }} />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.endDate} onClick={() => { this.hideendDate(); this.hideInvalidDate() }} onKeyPress={() => { this.hideendDate(); this.hideInvalidDate() }} type="date" label="Intership End Date" title="endDate" name="endDate" id="endDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.endDate} onClick={() => { this.hideendDate(); this.hideInvalidDate() }} onKeyPress={() => { this.hideendDate(); this.hideInvalidDate() }} max="2050-12-31"  type="date" label="Internship End Date" title="endDate" name="endDate" id="endDate" onChange={(event) => {
                                                         this.setState({
                                                             endDate: event.target.value
                                                         }); this.hideendDate(); this.hideInvalidDate()
@@ -350,7 +350,7 @@ export class InputIntershipLetter extends Component {
                                                 </div>
                                                 <div className="col-6 p-0" style={{ width: 0 }}>
                                                     {this.state.showendDate ? <div id="errordiv" className="container-fluid">Please fill out Internship End Date field * </div> : null}
-                                                    {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">Internship End Date greater or equal to Internship Start Date * </div> : null}
+                                                    {this.state.showinvalidDate ? <div id="errordiv" className="container-fluid">Internship End Date greater than Internship Start Date * </div> : null}
                                                 </div>
                                             </div>
 

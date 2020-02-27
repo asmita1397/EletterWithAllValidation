@@ -285,7 +285,7 @@ export default class InputIntentLetter extends Component {
 
                                                 <div class="row">
                                                     <div className="col-12">
-                                                        <MDBInput autocomplete="off" value={this.state.trainingStartDate} onKeyPress={this.hideTrainingStartDate} label="Training Start Date" type="date" name="trainingStartDate" id="trainingStartDate" title="trainingStartDate"
+                                                        <MDBInput autocomplete="off" value={this.state.trainingStartDate} onKeyPress={this.hideTrainingStartDate} label="Training Start Date" max="2050-12-31" type="date" name="trainingStartDate" id="trainingStartDate" title="trainingStartDate"
                                                             onChange={(event) => {
                                                                 this.setState({
                                                                     trainingStartDate: event.target.value

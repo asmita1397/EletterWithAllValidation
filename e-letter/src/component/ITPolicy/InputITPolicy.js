@@ -30,6 +30,7 @@ export class InputITPolicy extends Component {
             // valiadation state variables
             showAddress: '',
             showEmployeeName: '',
+            showInvalidEmployeeName:'',
             showEmployeeId: '',
             showJoiningDate: '',
             showDate: '',
@@ -136,7 +137,13 @@ export class InputITPolicy extends Component {
   
                      return false;
                 }  */
-
+                if(employeeName.length>20 )
+                {
+                    that.setState({ 
+                    showInvalidEmployeeName: true,
+                     }) 
+                    return false;
+                }
 
                 if (joiningDate != "" && designation != "" && employeeId != "" && employeeName !== "" && address != "") {
 
@@ -154,6 +161,11 @@ export class InputITPolicy extends Component {
     hideEmployeeName = () => {
         this.setState({
             showEmployeeName: false
+        })
+    }
+    hideInvalidEmployeeName = () => {
+        this.setState({
+            showInvalidEmployeeName: false
         })
     }
     hideAddress = () => {
@@ -274,11 +286,11 @@ export class InputITPolicy extends Component {
                                                     </select>
                                                 </div>
                                                 <div className="col-9">
-                                                    <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeName}
+                                                <MDBInput autocomplete="off" onKeyPress={()=>{debugger ;this.hideEmployeeName(); this.hideInvalidEmployeeName()}} onClick={()=>{this.hideEmployeeName(); this.hideInvalidEmployeeName()}}
                                                         value={this.state.employeeName} label="Employee Name" className="w-100" name="employeeName" title="Employee Name" id="employeeName" onChange={(event) => {
                                                             this.setState({
                                                                 employeeName: event.target.value
-                                                            })
+                                                            });this.hideEmployeeName();this.hideInvalidEmployeeName();
                                                         }} />
                                                 </div>
                                             </div>
@@ -288,6 +300,7 @@ export class InputITPolicy extends Component {
                                                 </div>
                                                 <div className="col-9 p-0" style={{ width: 0 }}>
                                                     {this.state.showEmployeeName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
+                                                    {this.state.showInvalidEmployeeName ? <div id="errordiv" className="container-fluid">Maximum length of this field is 20 Characters * </div> : null}
                                                 </div>
                                             </div>
 
@@ -322,7 +335,7 @@ export class InputITPolicy extends Component {
 
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <MDBInput autocomplete="off" type="date" value={this.state.joiningDate} onKeyPress={() => { this.hideJoiningDate(); this.hideInvaliddate() }} onClick={() => { this.hideJoiningDate(); this.hideInvaliddate() }} label="Joining Date" title="Joining Date" name="Joining Date" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" type="date" max="2050-12-31" value={this.state.joiningDate} onKeyPress={() => { this.hideJoiningDate(); this.hideInvaliddate() }} onClick={() => { this.hideJoiningDate(); this.hideInvaliddate() }} label="Joining Date" title="Joining Date" name="Joining Date" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         }); this.hideJoiningDate(); this.hideInvaliddate();

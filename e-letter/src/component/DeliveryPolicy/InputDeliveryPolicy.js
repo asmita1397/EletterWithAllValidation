@@ -12,7 +12,7 @@ export class InputDeliveryPolicy extends Component {
         super(props);
         this.state = {
             salute: 'S/o',
-            name: '',
+            employeeName: '',
             employeeId: '',
             joiningDate: '',
             address: '',
@@ -33,6 +33,7 @@ export class InputDeliveryPolicy extends Component {
             showAddress: '',
             showEmployeeName: '',
             showfatherName: '',
+            showInvalidEmployeeName:'',
             showAge: '',
             showEmployeeId: '',
             showJoiningDate: '',
@@ -51,7 +52,7 @@ export class InputDeliveryPolicy extends Component {
         if (editClick) {
             this.setState({
                 salute: this.props.empData.salute,
-                name: this.props.empData.name,
+                employeeName: this.props.empData.employeeName,
                 employeeId: this.props.empData.employeeId,
                 fatherName: this.props.empData.fatherName,
                 age: this.props.empData.age,
@@ -64,9 +65,9 @@ export class InputDeliveryPolicy extends Component {
         var that = this;
         $(document).ready(() => {
             $('#generate').click((e) => {
-                debugger
+
                 console.log("inside CDM")
-                debugger;
+
 
                 const monthNames = ["January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October", "November", "December"
@@ -103,18 +104,18 @@ export class InputDeliveryPolicy extends Component {
                         }
                     })
                 }
-                
+
                 let fatherName = (document.getElementById("fatherName").value).trim();
                 let age = (document.getElementById("age").value).trim();
                 let joiningDate = (document.getElementById("joiningDate").value).trim();
                 let designation = (document.getElementById("designation").value).trim();
                 let employeeId = (document.getElementById("employeeId").value).trim();
                 let address = (document.getElementById("address").value).trim();
-                let name = (document.getElementById("name").value).trim();
+                let employeeName = (document.getElementById("employeeName").value).trim();
                 let selectedDate = new Date(joiningDate)
                 let now = new Date()
 
-                console.log("Inside Validation", joiningDate, name, designation, employeeId);
+                console.log("Inside Validation", joiningDate, employeeName, designation, employeeId);
 
 
                 if (joiningDate === "") {
@@ -130,12 +131,12 @@ export class InputDeliveryPolicy extends Component {
                     that.setState({ showFatherName: true })
                 }
                 if (employeeId === "") {
-                    this.setState({ showAddress: true })
-                }
-                if (address === "") {
                     this.setState({ showEmployeeId: true })
                 }
-                if (name === "") {
+                if (address === "") {
+                    this.setState({ showAddress: true })
+                }
+                if (employeeName=== "") {
                     this.setState({ showEmployeeName: true })
                 }
 
@@ -147,8 +148,14 @@ export class InputDeliveryPolicy extends Component {
                      return false;
                 }  */
 
-
-                if (joiningDate != "" && designation != "" && employeeId != "" && fatherName != "" && age != "" && name !== "" && address != "") {
+                if(employeeName.length>20 )
+                {
+                    that.setState({ 
+                    showInvalidEmployeeName: true,
+                     }) 
+                    return false;
+                }
+                if (joiningDate != "" && designation != "" && employeeId != "" && fatherName != "" && age != "" && employeeName !== "" && address != "") {
 
                     console.log("True return")
                     return true;
@@ -166,6 +173,16 @@ export class InputDeliveryPolicy extends Component {
             showEmployeeName: false
         })
     }
+    hideInvalidEmployeeName = () => {
+        this.setState({
+            showInvalidEmployeeName: false
+        })
+    }
+    hideEmployeeId = () => {
+        this.setState({
+            showEmployeeId: false
+        })
+    }
     hideAddress = () => {
         this.setState({
             showAddress: false
@@ -181,11 +198,7 @@ export class InputDeliveryPolicy extends Component {
             showAge: false
         })
     }
-    hideEmployeeId = () => {
-        this.setState({
-            showEmployeeId: false
-        })
-    }
+
     hideJoiningDate = () => {
         this.setState({
             showJoiningDate: false
@@ -230,8 +243,6 @@ export class InputDeliveryPolicy extends Component {
 
     onChangeHeader = (event) => {
 
-        debugger;
-
         console.log("Checkbox value ==", event.target.value)
         if (event.target.value == 'false') {
             this.setState({
@@ -240,7 +251,7 @@ export class InputDeliveryPolicy extends Component {
             console.log("if  ==", this.state.withHeader)
         }
         else {
-            debugger;
+
             this.setState({
                 withHeader: false
             })
@@ -296,15 +307,15 @@ export class InputDeliveryPolicy extends Component {
                                                     </select>
                                                 </div>
                                                 <div class="col-5">
-                                                    <MDBInput autocomplete="off" value={this.state.name} label="Name" type="text" name="name" id="name" title="name" onChange={(event) => {
-                                                        this.setState({
-                                                            name: event.target.value
-                                                        });
-                                                        this.hideEmployeeName()
-                                                    }} />
+                                                    <MDBInput autocomplete="off" onKeyPress={() => { debugger; this.hideEmployeeName(); this.hideInvalidEmployeeName() }} onClick={() => { this.hideEmployeeName(); this.hideInvalidEmployeeName() }}
+                                                        value={this.state.employeeName} label="Employee Name" className="w-100" name="employeeName" title="Employee Name" id="employeeName" onChange={(event) => {
+                                                            this.setState({
+                                                                employeeName: event.target.value
+                                                            }); this.hideEmployeeName(); this.hideInvalidEmployeeName();
+                                                        }} />
                                                 </div>
                                                 <div className="col-5">
-                                                    <MDBInput autocomplete="off" value={this.state.fatherName} label="Father Name" type="text" name="fatherName" id="fatherName" title="Company Location" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.fatherName} label="Father Name" type="text" name="fatherName" id="fatherName" title="Father Name" onChange={(event) => {
                                                         this.setState({
                                                             fatherName: event.target.value
                                                         }); this.hideFatherName();
@@ -312,9 +323,10 @@ export class InputDeliveryPolicy extends Component {
                                                 </div>
                                             </div>
 
-                                           <div className="row" style={{ padding: 0 }}>
+                                            <div className="row" style={{ padding: 0 }}>
                                                 <div className="offset-2 col-5 p-0" >
-                                                    {this.state.showName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
+                                                    {this.state.showEmployeeName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
+                                                    {this.state.showInvalidEmployeeName ? <div id="errordiv" className="container-fluid">Maximum length of this field is 20 Characters * </div> : null}
 
                                                 </div>
                                                 <div className="col-5 p-0" style={{ width: 0 }}>
@@ -323,7 +335,7 @@ export class InputDeliveryPolicy extends Component {
                                                 </div>
                                             </div>
 
-                                            
+
 
 
                                             <div className="row">
@@ -331,7 +343,7 @@ export class InputDeliveryPolicy extends Component {
                                                     <MDBInput autocomplete="off" onKeyPress={this.hideEmployeeId} value={this.state.employeeId} label="Employee Id" name="employeeId" id="employeeId" title="Employee Id" onChange={(event) => {
                                                         this.setState({
                                                             employeeId: event.target.value
-                                                        })
+                                                        }); this.hideEmployeeId();
                                                     }} />
                                                 </div>
                                                 <div className="col-6">
@@ -339,7 +351,7 @@ export class InputDeliveryPolicy extends Component {
                                                         value={this.state.designation} label="Designation" name="designation" id="designation" title="Designation" onChange={(event) => {
                                                             this.setState({
                                                                 designation: event.target.value
-                                                            })
+                                                            }); this.hideDesignation();
                                                         }} />
                                                 </div>
                                             </div>
@@ -352,47 +364,49 @@ export class InputDeliveryPolicy extends Component {
                                                     {this.state.showDesignation ? <div id="errordiv" className="container-fluid">Please fill Designation field * </div> : null}
                                                 </div>
                                             </div>
-{/* address */}
-<div class="row">
-                                                <div class="col-6">
-                                                    <MDBInput autocomplete="off" value={this.state.address} label="Address" type="text" name="address" id="address" title="address" onChange={(event) => {
-                                                        this.setState({
-                                                            address: event.target.value
-                                                        }); this.hideAddress()
-                                                    }} />
-                                                </div>
+                                            {/* address */}
+                                            <div class="row">
                                                 <div className="col-6">
-                                                    <MDBInput autocomplete="off" value={this.state.age} label="Age" type="number" name="age" id="age" title="Age" onChange={(event) => {
-                                                        this.setState({
-                                                            age: event.target.value
-                                                        }); this.hideAge()
-                                                    }}  min="18" max="120"/>
-                                                </div>
-                                            </div>
-
-                                            <div className="row" style={{ padding: 0 }}>
-                                                <div className="col-6 p-0" >
-                                                    {this.state.showAddress ? <div id="errordiv" className="container-fluid">Please fill out Address field * </div> : null}
-
-                                                </div>
-                                                <div className="col-6 p-0" style={{ width: 0 }}>
-                                                    {this.state.showAge ? <div id="errordiv" className="container-fluid">Please fill out Age field * </div> : null}
-
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <MDBInput autocomplete="off" type="date" value={this.state.joiningDate} onKeyPress={() => { this.hideJoiningDate(); this.hideInvaliddate() }} onClick={() => { this.hideJoiningDate(); this.hideInvaliddate() }} label="Joining Date" title="Joining Date" name="Joining Date" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" type="date" max="2050-12-31" value={this.state.joiningDate} onKeyPress={() => { this.hideJoiningDate(); this.hideInvaliddate() }} onClick={() => { this.hideJoiningDate(); this.hideInvaliddate() }} label="Joining Date" title="Joining Date" name="Joining Date" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         }); this.hideJoiningDate(); this.hideInvaliddate();
                                                     }} />
                                                 </div>
 
+                                                <div className="col-6">
+                                                    <MDBInput autocomplete="off" value={this.state.age} label="Age" type="number" name="age" id="age" title="Age" onChange={(event) => {
+                                                        this.setState({
+                                                            age: event.target.value
+                                                        }); this.hideAge()
+                                                    }} min="18" max="120" />
+                                                </div>
+                                            </div>
+
+                                            <div className="row" style={{ padding: 0 }}>
+                                                <div className="col-6 p-0">
+                                                    {this.state.showJoiningDate ? <div id="errordiv" className="container-fluid">Please fill out JoiningDate field * </div> : null}
+
+                                                </div>
+
+                                                <div className="col-6 p-0" style={{ width: 0 }}>
+                                                    {this.state.showAge ? <div id="errordiv" className="container-fluid">Please fill out Age field * </div> : null}
+
+                                                </div>
+                                            </div>
+                                            <div className="row">
+
+                                                <div class="col-12">
+                                                    <MDBInput autocomplete="off" value={this.state.address} label="Address" type="textarea" name="address" id="address" title="address" onChange={(event) => {
+                                                        this.setState({
+                                                            address: event.target.value
+                                                        }); this.hideAddress()
+                                                    }} />
+                                                </div>
                                             </div>
                                             <div className="row" style={{ padding: 0 }}>
-                                                <div className="col-12 p-0">
-                                                    {this.state.showJoiningDate ? <div id="errordiv" className="container-fluid">Please fill out JoiningDate field * </div> : null}
+                                                <div className="col-12 p-0" >
+                                                    {this.state.showAddress ? <div id="errordiv" className="container-fluid">Please fill out Address field * </div> : null}
 
                                                 </div>
 

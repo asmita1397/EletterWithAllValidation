@@ -293,7 +293,7 @@ export class InputIncrementLetter extends Component {
                                                     }} />
                                                 </div>
                                                 <div class="col-6">
-                                                    <MDBInput autocomplete="off" value={this.state.incrementInEffectDate} onClick={this.hideIncrementInEffectDate} onKeyPress={this.hideIncrementInEffectDate} type="date" label="Increment In Effect Date" title="Increment In Effect Date" name="incrementInEffectDate" id="incrementInEffectDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.incrementInEffectDate} onClick={this.hideIncrementInEffectDate} onKeyPress={this.hideIncrementInEffectDate} max="2050-12-31" type="date" label="Increment In Effect Date" title="Increment In Effect Date" name="incrementInEffectDate" id="incrementInEffectDate" onChange={(event) => {
                                                         this.setState({
                                                             incrementInEffectDate: event.target.value
                                                         }); this.hideIncrementInEffectDate();

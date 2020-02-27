@@ -12,7 +12,7 @@ export class InputOffer2Letter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
+            employeeName: '',
             fatherName: '',
             age: '',
             address: '',
@@ -34,7 +34,8 @@ export class InputOffer2Letter extends Component {
             showCompanyLocation: '',
             showOfferValidity: '',
             showSalary: "",
-            showInvalidDate: ''
+            showInvalidDate: '',
+            showInvalidEmployeeName:'',
 
         }
     }
@@ -48,7 +49,7 @@ export class InputOffer2Letter extends Component {
 
 
                 salute: this.props.empData.salute,
-                name: this.props.empData.name,
+                employeeName: this.props.empData.employeeName,
                 fatherName: this.props.empData.fatherName,
                 age: this.props.empData.age,
                 address: this.props.empData.address,
@@ -85,7 +86,7 @@ export class InputOffer2Letter extends Component {
         var that = this;
         $(document).ready(function () {
             $('#genrate').click(function (e) {
-                let name = (document.getElementById("name").value).trim();
+                let employeeName = (document.getElementById("employeeName").value).trim();
                 let fatherName = (document.getElementById("fatherName").value).trim();
                 let designation = (document.getElementById("designation").value).trim();
                 let companyLocation = (document.getElementById("companyLocation").value).trim();
@@ -124,7 +125,7 @@ export class InputOffer2Letter extends Component {
                 if (fatherName === "") {
                     that.setState({ showFatherName: true })
                 }
-                if (name === "") {
+                if (employeeName === "") {
                     that.setState({ showName: true })
                 }
 
@@ -136,14 +137,21 @@ export class InputOffer2Letter extends Component {
 
                     return false;
                 }
+                if(employeeName.length>20 )
+                {
+                    that.setState({ 
+                    showInvalidEmployeeName: true,
+                     }) 
+                    return false;
+                }
 
-                if (designation != "" && companyLocation != "" && name != "" && offerValidity !== "" && fatherName != "" && age != "" && address != "" && salary != "") {
-                  
+                if (designation != "" && companyLocation != "" && employeeName != "" && offerValidity !== "" && fatherName != "" && age != "" && address != "" && salary != "") {
+
                     return true;
 
                 }
                 else {
-                    
+
                     return false;
                 }
             });
@@ -152,38 +160,38 @@ export class InputOffer2Letter extends Component {
     }
 
     onCheckHandler = (event) => {
-        
+
         if (event.target.value == 'false') {
             this.setState({
                 withWaterMark: true
             })
-          
+
         }
         else {
             ;
             this.setState({
                 withWaterMark: false
             })
-            
+
 
         }
     }
 
     onChangeHeader = (event) => {
 
-       
+
         if (event.target.value == 'false') {
             this.setState({
                 withHeader: true
             })
-            
+
         }
         else {
             ;
             this.setState({
                 withHeader: false
             })
-           
+
 
         }
 
@@ -194,7 +202,7 @@ export class InputOffer2Letter extends Component {
 
     pass = (event) => {
         event.preventDefault();
-       
+
 
         this.props.clicked(this.state)
         this.props.history.push('/Offerletter2')
@@ -204,6 +212,11 @@ export class InputOffer2Letter extends Component {
     hideEmployeeName = () => {
         this.setState({
             showName: false
+        })
+    }
+    hideInvalidEmployeeName = () => {
+        this.setState({
+            showInvalidEmployeeName: false
         })
     }
     hideFatherName = () => {
@@ -250,7 +263,7 @@ export class InputOffer2Letter extends Component {
         })
     }
 
-    
+
     render() {
 
         return (
@@ -280,42 +293,36 @@ export class InputOffer2Letter extends Component {
                                                         <option value="D/o ">Mrs.</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-5">
-                                                    <MDBInput autocomplete="off" value={this.state.name} label="Name" type="text" name="name" id="name" title="name" onChange={(event) => {
-                                                        this.setState({
-                                                            name: event.target.value
-                                                        });
-                                                        this.hideEmployeeName()
-                                                    }} />
+                                                <div class="col-10">
+                                                <MDBInput autocomplete="off" onKeyPress={()=>{debugger ;this.hideEmployeeName(); this.hideInvalidEmployeeName()}} onClick={()=>{this.hideEmployeeName(); this.hideInvalidEmployeeName()}}
+                                                        value={this.state.employeeName} label="Employee Name" className="w-100" name="employeeName" title="Employee Name" id="employeeName" onChange={(event) => {
+                                                            this.setState({
+                                                                employeeName: event.target.value
+                                                            });this.hideEmployeeName();this.hideInvalidEmployeeName();
+                                                        }} />
                                                 </div>
-                                                <div className="col-5">
-                                                    <MDBInput autocomplete="off" value={this.state.fatherName} label="Father Name" type="text" name="fatherName" id="fatherName" title="Company Location" onChange={(event) => {
-                                                        this.setState({
-                                                            fatherName: event.target.value
-                                                        }); this.hideFatherName();
-                                                    }} />
-                                                </div>
+
                                             </div>
 
 
                                             <div className="row" style={{ padding: 0 }}>
-                                                <div className="offset-2 col-5 p-0" >
+                                                <div className="offset-2 col-10 p-0" >
                                                     {this.state.showName ? <div id="errordiv" className="container-fluid">Please fill out Name field * </div> : null}
-
+                                                    {this.state.showInvalidEmployeeName ? <div id="errordiv" className="container-fluid">Maximum length of this field is 20 Characters * </div> : null}
                                                 </div>
                                                 <div className="col-5 p-0" style={{ width: 0 }}>
-                                                    {this.state.showFatherName ? <div id="errordiv" className="container-fluid">Please fill out Father Name field * </div> : null}
+
 
                                                 </div>
                                             </div>
 
 
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <MDBInput autocomplete="off" value={this.state.address} label="Address" type="text" name="address" id="address" title="address" onChange={(event) => {
+                                                <div className="col-6">
+                                                    <MDBInput autocomplete="off" value={this.state.fatherName} label="Father Name" type="text" name="fatherName" id="fatherName" title="fatherName" onChange={(event) => {
                                                         this.setState({
-                                                            address: event.target.value
-                                                        }); this.hideAddress()
+                                                            fatherName: event.target.value
+                                                        }); this.hideFatherName();
                                                     }} />
                                                 </div>
                                                 <div className="col-6">
@@ -323,13 +330,13 @@ export class InputOffer2Letter extends Component {
                                                         this.setState({
                                                             age: event.target.value
                                                         }); this.hideAge()
-                                                    }}  min="18" max="120"/>
+                                                    }} min="18" max="120" />
                                                 </div>
                                             </div>
 
                                             <div className="row" style={{ padding: 0 }}>
                                                 <div className="col-6 p-0" >
-                                                    {this.state.showAddress ? <div id="errordiv" className="container-fluid">Please fill out Address field * </div> : null}
+                                                    {this.state.showFatherName ? <div id="errordiv" className="container-fluid">Please fill out Father Name field * </div> : null}
 
                                                 </div>
                                                 <div className="col-6 p-0" style={{ width: 0 }}>
@@ -378,7 +385,7 @@ export class InputOffer2Letter extends Component {
                                                     }} />
                                                 </div>
                                                 <div class="col-6">
-                                                    <MDBInput autocomplete="off" value={this.state.offerValidity} onClick={() => { this.hideOfferValidity(); this.hideInvalidDate() }} onKeyPress={() => { this.hideInvalidDate() }} type="date" label="Offer Validity" title="Offer Validity" name="offerValidity" id="offerValidity" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.offerValidity} onClick={() => { this.hideOfferValidity(); this.hideInvalidDate() }} onKeyPress={() => { this.hideInvalidDate() }} max="2050-12-31" type="date" label="Offer Validity" title="Offer Validity" name="offerValidity" id="offerValidity" onChange={(event) => {
                                                         this.setState({
                                                             offerValidity: event.target.value
                                                         }); this.hideOfferValidity(); this.hideInvalidDate();
@@ -397,7 +404,25 @@ export class InputOffer2Letter extends Component {
                                                 </div>
                                             </div>
 
-                                            
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <MDBInput autocomplete="off" value={this.state.address} label="Address" type="textarea" name="address" id="address" title="address" onChange={(event) => {
+                                                        this.setState({
+                                                            address: event.target.value
+                                                        }); this.hideAddress()
+                                                    }} />
+                                                </div>
+                                            </div>
+
+                                            <div className="row" style={{ padding: 0 }}>
+
+                                                <div className="col-12 p-0" style={{ width: 0 }}>
+                                                    {this.state.showAddress ? <div id="errordiv" className="container-fluid">Please fill out Address field * </div> : null}
+                                                </div>
+                                            </div>
+
+
 
 
 

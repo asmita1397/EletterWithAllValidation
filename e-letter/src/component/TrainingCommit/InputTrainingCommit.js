@@ -151,7 +151,7 @@ export class InputTrainingCommitLetter extends Component {
                     this.setState({ showTrainingEndDate: true })
                 }
 
-                if (trainingEndDateSelected < trainingStartDateSelected) {
+                if (trainingEndDateSelected <= trainingStartDateSelected) {
                     that.setState({
                         showInvalidDate: "true"
                     })
@@ -342,7 +342,7 @@ export class InputTrainingCommitLetter extends Component {
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} onClick={this.hideJoiningDate} onKeyPress={this.hideJoiningDate} type="date" label="Joining Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.joiningDate} onClick={this.hideJoiningDate} onKeyPress={this.hideJoiningDate} type="date" max="2050-12-31" label="Joining Date" title="Joining Date" name="JoiningDate" id="joiningDate" onChange={(event) => {
                                                         this.setState({
                                                             joiningDate: event.target.value
                                                         }); this.hideJoiningDate()
@@ -368,14 +368,14 @@ export class InputTrainingCommitLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.trainingStartDate} onClick={this.hideTrainingStartDate} onKeyPress={this.hideTrainingStartDate} type="date" label="Traininng Start Date" title="Training Start Date" name="trainingStartDate" id="trainingStartDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.trainingStartDate} onClick={this.hideTrainingStartDate} onKeyPress={this.hideTrainingStartDate}  max="2050-12-31" type="date" label="Traininng Start Date" title="Training Start Date" name="trainingStartDate" id="trainingStartDate" onChange={(event) => {
                                                         this.setState({
                                                             trainingStartDate: event.target.value
                                                         }); this.hideTrainingStartDate();
                                                     }} />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.trainingEndDate} onClick={() => { this.hideTrainingEndDate(); this.hideInvalidDate() }} onKeyPress={() => { this.hideTrainingEndDate(); this.hideInvalidDate() }} type="date" label="Training End Date" title="Training End Date" name="trainingStartDate" id="trainingEndDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.trainingEndDate} onClick={() => { this.hideTrainingEndDate(); this.hideInvalidDate() }} onKeyPress={() => { this.hideTrainingEndDate(); this.hideInvalidDate() }} max="2050-12-31" type="date" label="Training End Date" title="Training End Date" name="trainingStartDate" id="trainingEndDate" onChange={(event) => {
                                                         this.setState({
                                                             trainingEndDate: event.target.value
                                                         }); this.hideTrainingEndDate(); this.hideInvalidDate()

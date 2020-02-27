@@ -284,7 +284,7 @@ export class InputDepuationLetter extends Component {
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <MDBInput autocomplete="off" value={this.state.reportingDate} onKeyPress={() => { this.hideReportingDate(); this.hideInvalidDate() }} onClick={() => { this.hideReportingDate(); this.hideInvalidDate() }} type="date" label="Reporting Date" title="Reporting Date" name="reportingDate" id="reportingDate" onChange={(event) => {
+                                                    <MDBInput autocomplete="off" value={this.state.reportingDate} max="2050-12-31" onKeyPress={() => { this.hideReportingDate(); this.hideInvalidDate() }} onClick={() => { this.hideReportingDate(); this.hideInvalidDate() }} type="date" label="Reporting Date" title="Reporting Date" name="reportingDate" id="reportingDate" onChange={(event) => {
                                                         this.setState({
                                                             reportingDate: event.target.value
                                                         }); this.hideReportingDate(); this.hideInvalidDate();

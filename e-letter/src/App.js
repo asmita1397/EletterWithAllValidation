@@ -50,7 +50,7 @@ import { InputDeliveryPolicy } from './component/DeliveryPolicy/InputDeliveryPol
 import { DeliveryPolicy } from './component/DeliveryPolicy/DeliveryPolicy';
 import { InputITPolicy } from './component/ITPolicy/InputITPolicy';
 import { ITPolicy } from './component/ITPolicy/ITPolicy';
-
+import EmployeeTable from './component/EmployeeTable/EmployeeTable'
 
 export class App extends Component{
   
@@ -86,10 +86,10 @@ export class App extends Component{
   return (
 
     <div className="App">
-
+{/* <EmployeeTable/> */}
       <Route exact path='/' component={Login}></Route>
 
-      <Route exact path='/cards' component={Cards}></Route>
+      {(localStorage.getItem("email")!='')?<Route exact path='/cards' component={Cards}></Route>:""}
       <Route exact path='/drop' component={Dropdown}></Route>
      
       <Route exact path='/hr'  render={() => { return <InputHRLetter empData={this.state.emp} clicked={this.employee.bind()}  /> }}></Route>
@@ -161,8 +161,9 @@ export class App extends Component{
      <Route exact path='/email' component={MailComponent}></Route>
 
       <Route exact path='/test' component={Temp}></Route>
+      {/* <Route exact path='/table' component={EmployeeTable}></Route> */}
 
-     
+      <Route exact path='/table'  render={() => { return <EmployeeTable empData={this.state.emp}  /> }}></Route>
     </div>
   );
 }
